@@ -73,6 +73,18 @@ return {
     end,
   },
   {
+    "fwcd/kotlin-debug-adapter",
+    ft = "kotlin",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+    },
+    config = function()
+      require("configs.dap-kotlin")
+    end,
+  },
+
+  {
     "mfussenegger/nvim-dap-python",
     ft = "python",
     dependencies = {

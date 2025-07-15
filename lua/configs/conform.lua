@@ -6,6 +6,7 @@ local options = {
     cpp = { "clang-format" },
     css = { "prettier" },
     html = { "prettier" },
+    --kotlin = { "ktlint" }, --lsp worked better
   },
   formatters = {
     -- Python
@@ -22,6 +23,7 @@ local options = {
         "black",
       },
     },
+    --C/C++
     ["clang-format"] = {
       prepend_args = {
         "-style={ \
@@ -33,10 +35,16 @@ local options = {
                 PackConstructorInitializers: Never}",
       },
     },
+    --kotlin
+    --ktlint = {
+    --command = "ktlint", -- Ensure this is in your PATH
+    --args = { "--stdin", "--format" }, -- Format in-place
+    --stdin = true,
+    --},
   },
   format_on_save = {
     -- These options will be passed to conform.format()
-    timeout_ms = 500,
+    timeout_ms = 5000,
     lsp_fallback = true,
   },
 }

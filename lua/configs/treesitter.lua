@@ -15,6 +15,7 @@ local options = {
     "cmake",
     "cpp",
     "make",
+    "kotlin",
   },
 
   highlight = {

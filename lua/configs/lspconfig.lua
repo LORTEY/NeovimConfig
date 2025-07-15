@@ -9,6 +9,7 @@ lspconfig.servers = {
   "lua_ls",
   "pyright",
   "clangd",
+  "kotlin_language_server", --change to kotlin-lsp once you find a working config for it
 }
 
 -- list of servers configured with default config.
@@ -57,4 +58,15 @@ lspconfig.clangd.setup({
   end,
   on_init = on_init,
   capabilities = capabilities,
+})
+
+lspconfig.kotlin_language_server.setup({
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  -- Kotlin specific settings if needed
+  filetypes = { "kotlin" },
+  root_dir = function()
+    return vim.loop.cwd()
+  end, -- adjust as needed
 })

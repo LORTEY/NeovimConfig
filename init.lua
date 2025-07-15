@@ -2,6 +2,11 @@ vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46/"
 vim.g.mapleader = " "
 
 vim.g.maplocalleader = " " -- Optional: for filetype-specific mappings
+
+vim.lsp.set_log_level("debug")
+if vim.fn.has("nvim-0.5.1") == 1 then
+  require("vim.lsp.log").set_format_func(vim.inspect)
+end
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
