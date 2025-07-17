@@ -1,4 +1,21 @@
 return {
+
+  {
+    "folke/tokyonight.nvim", -- Or any other colorscheme that supports Pywal
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("tokyonight") -- Fallback if Pywal fails
+    end,
+  },
+  {
+    "AlphaTechnolog/pywal.nvim", -- Pywal integration for Neovim
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("pywal").setup()
+    end,
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPre", "BufNewFile" },
@@ -80,7 +97,7 @@ return {
       "rcarriga/nvim-dap-ui",
     },
     config = function()
-      require("configs.dap-kotlin")
+      require("configs.kotlin-debug-adapter")
     end,
   },
 
