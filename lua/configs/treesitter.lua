@@ -1,5 +1,7 @@
+--syntax highlight
 local options = {
   ensure_installed = {
+    "asm",
     "bash",
     "fish",
     "lua",
@@ -7,6 +9,7 @@ local options = {
     "markdown",
     "printf",
     "toml",
+    "java",
     "vim",
     "vimdoc",
     "yaml",

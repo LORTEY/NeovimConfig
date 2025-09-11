@@ -1,11 +1,10 @@
 return {
-
   {
     "folke/tokyonight.nvim", -- Or any other colorscheme that supports Pywal
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("tokyonight") -- Fallback if Pywal fails
+      vim.cmd.colorscheme "tokyonight" -- Fallback if Pywal fails
     end,
   },
   {
@@ -20,63 +19,65 @@ return {
     "nvim-treesitter/nvim-treesitter",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      require("configs.treesitter")
+      require "configs.treesitter"
     end,
   },
+
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre",
-    config = function()
-      require("configs.conform")
-    end,
-  },
-  {
-    "zapling/mason-conform.nvim",
-    event = "VeryLazy",
-    dependencies = { "conform.nvim" },
-    config = function()
-      require("configs.mason-conform")
-    end,
-  },
-  {
-    "mfussenegger/nvim-lint",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("configs.lint")
-    end,
-  },
-  {
-    "rshkarin/mason-nvim-lint",
-    event = "VeryLazy",
-    dependencies = { "nvim-lint" },
-    config = function()
-      require("configs.mason-lint")
-    end,
+    -- event = 'BufWritePre', -- uncomment for format on save
+    opts = require "configs.conform",
   },
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("nvchad.configs.lspconfig").defaults()
-      require("configs.lspconfig")
+      require "configs.lspconfig"
     end,
   },
+  {
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end,
+  },
+
   {
     "williamboman/mason-lspconfig.nvim",
     event = "VeryLazy",
-    dependencies = { "nvim-lspconfig" },
+    dependencies = { "mason.nvim", "nvim-lspconfig" },
     config = function()
-      require("configs.mason-lspconfig")
+      require "configs.lsp.mason-lspconfig"
     end,
   },
+
   {
     "mfussenegger/nvim-dap",
+    dependencies = { "mason.nvim" },
     config = function()
-      require("configs.dap")
+      require "configs.dap.dap"
     end,
   },
   {
+    "jay-babu/mason-nvim-dap.nvim",
+    event = "VeryLazy",
+    config = function()
+      require "configs.dap.mason-dap"
+    end,
+  },
+
+  {
     "nvim-neotest/nvim-nio",
+  },
+
+  {
+    "zapling/mason-conform.nvim",
+    event = "VeryLazy",
+    dependencies = { "conform.nvim", "mason.nvim" },
+    config = function()
+      require "configs.conform.mason-conform"
+    end,
   },
 
   {
@@ -86,37 +87,7 @@ return {
       "nvim-neotest/nvim-nio",
     },
     config = function()
-      require("configs.dap-ui")
-    end,
-  },
-  {
-    "fwcd/kotlin-debug-adapter",
-    ft = "kotlin",
-    dependencies = {
-      "mfussenegger/nvim-dap",
-      "rcarriga/nvim-dap-ui",
-    },
-    config = function()
-      require("configs.kotlin-debug-adapter")
-    end,
-  },
-
-  {
-    "mfussenegger/nvim-dap-python",
-    ft = "python",
-    dependencies = {
-      "mfussenegger/nvim-dap",
-      "rcarriga/nvim-dap-ui",
-    },
-    config = function()
-      require("configs.dap-python")
-    end,
-  },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("configs.mason-dap")
+      require "configs.dap.dap-ui"
     end,
   },
   -- test new blink

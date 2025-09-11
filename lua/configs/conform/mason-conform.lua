@@ -1,0 +1,2 @@
+require("mason-conform").setup({
+})
