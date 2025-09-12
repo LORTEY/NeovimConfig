@@ -82,11 +82,13 @@ return {
 
   {
     "rcarriga/nvim-dap-ui",
+    event = "VeryLazy",
     dependencies = {
       "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio",
     },
     config = function()
+      --require("dapui").setup()
       require "configs.dap.dap-ui"
     end,
   },
