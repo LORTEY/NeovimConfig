@@ -1,1 +1,3 @@
-**This repo is my NeoVim config with fully automatic DAP, LSP and Conform support via Mason.
+** This repo is my NeoVim config with fully automatic DAP, LSP and Conform support via Mason.
+
+For some reason conforms dont work
